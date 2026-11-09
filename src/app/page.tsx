@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { HeroFolderStack } from "@/components/HeroFolderStack";
 import { WorkflowStages } from "@/components/WorkflowStages";
 import { OpenSourceSection } from "@/components/OpenSourceSection";
+import { SecuritySection } from "@/components/SecuritySection";
 import { ScrollRevealObserver } from "@/components/ScrollRevealObserver";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
         <HeroFolderStack />
         <WorkflowStages />
         <OpenSourceSection />
+        <SecuritySection />
       </main>
 
       <SiteFooter />

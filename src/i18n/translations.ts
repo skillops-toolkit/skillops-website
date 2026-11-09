@@ -91,6 +91,25 @@ export interface TranslationDictionary {
       desc: string;
     }[];
   };
+  security: {
+    eyebrow: string;
+    titleLine1: string;
+    titleLine2: string;
+    leadPart1: string;
+    leadHighlight1: string;
+    leadAnd: string;
+    leadHighlight2: string;
+    leadPart2: string;
+    securityPolicyBtn: string;
+    panelAria: string;
+    panelTitle: string;
+    panelBadge: string;
+    pillars: {
+      tag: string;
+      path: string;
+      desc: string;
+    }[];
+  };
   footer: {
     wordmarkAria: string;
     license: string;
@@ -281,6 +300,38 @@ SUBAGENT.md  -> Isolated specialist + restricted tool allowlist`
           tag: "MIT LICENSE · ZERO LOCK-IN",
           path: ".skillops-lock.json (SHA-256)",
           desc: "Runs 100% locally via npx with zero telemetry and zero API keys. Every generated file is standard Markdown you own inside your repository."
+        }
+      ]
+    },
+    security: {
+      eyebrow: "VERIFIED BY DEFAULT · ZERO BLIND TRUST",
+      titleLine1: "Real security.",
+      titleLine2: "Protected by default.",
+      leadPart1:
+        "SkillOps never downloads unverified external code. Every Skill goes through ",
+      leadHighlight1: "automated security scans",
+      leadAnd: " and ",
+      leadHighlight2: "mandatory human review",
+      leadPart2: " before reaching your IDE.",
+      securityPolicyBtn: "View Security Policy",
+      panelAria: "SkillOps security layers",
+      panelTitle: "SkillOps Security Gate",
+      panelBadge: "100% VERIFIED ✔",
+      pillars: [
+        {
+          tag: "MANDATORY HUMAN REVIEW",
+          path: "CODEOWNERS",
+          desc: "Nothing enters the catalog automatically. Every change is manually reviewed line by line before approval."
+        },
+        {
+          tag: "AUTOMATED THREAT BLOCKING",
+          path: "Python AST & CodeQL",
+          desc: "Static scanners block hidden network calls, unsafe command execution, binary files, and invisible text."
+        },
+        {
+          tag: "100% LOCAL & HASH-LOCKED",
+          path: "SHA-256 Lockfile",
+          desc: "Runs directly on your machine with zero cloud or API keys, protecting your local files with SHA-256 verification."
         }
       ]
     },
@@ -483,6 +534,38 @@ SUBAGENT.md  -> Especialista isolado + lista restrita de ferramentas`
         }
       ]
     },
+    security: {
+      eyebrow: "SEGURANÇA VERIFICADA · ZERO EXECUÇÃO CEGA",
+      titleLine1: "Segurança real.",
+      titleLine2: "Protegido por padrão.",
+      leadPart1:
+        "O SkillOps nunca baixa códigos externos sem verificação. Cada Skill passa por ",
+      leadHighlight1: "análise automática de segurança",
+      leadAnd: " e ",
+      leadHighlight2: "revisão humana obrigatória",
+      leadPart2: " antes de chegar à sua IDE.",
+      securityPolicyBtn: "Ver Política de Segurança",
+      panelAria: "Camadas de segurança do SkillOps",
+      panelTitle: "SkillOps Security Gate",
+      panelBadge: "100% VERIFICADO ✔",
+      pillars: [
+        {
+          tag: "REVISÃO HUMANA OBRIGATÓRIA",
+          path: "CODEOWNERS",
+          desc: "Nenhuma skill entra no catálogo automaticamente. Toda alteração é revisada manualmente linha a linha antes de ser aprovada."
+        },
+        {
+          tag: "BLOQUEIO AUTOMÁTICO DE AMEAÇAS",
+          path: "Python AST & CodeQL",
+          desc: "Scanners estáticos barram conexões externas ocultas, execução de comandos perigosos, arquivos binários e textos invisíveis."
+        },
+        {
+          tag: "EXECUÇÃO 100% LOCAL E PROTEGIDA",
+          path: "SHA-256 Lockfile",
+          desc: "Roda direto na sua máquina sem nuvem ou chaves de API, protegendo seus arquivos locais com verificação SHA-256."
+        }
+      ]
+    },
     footer: {
       wordmarkAria: "Logotipo arquitetural em blocos SKILLOPS",
       license: "Licença MIT",
@@ -679,6 +762,38 @@ SUBAGENT.md  -> Especialista aislado + lista restringida de herramientas`
           tag: "LICENCIA MIT · CERO LOCK-IN",
           path: ".skillops-lock.json (SHA-256)",
           desc: "Se ejecuta 100% localmente vía npx con cero telemetría y cero claves de API. Cada archivo generado es Markdown estándar que te pertenece dentro de tu repositorio."
+        }
+      ]
+    },
+    security: {
+      eyebrow: "SEGURIDAD VERIFICADA · CERO EJECUCIÓN CIEGA",
+      titleLine1: "Seguridad real.",
+      titleLine2: "Protegido por defecto.",
+      leadPart1:
+        "SkillOps nunca descarga código externo sin verificar. Cada Skill pasa por ",
+      leadHighlight1: "análisis automático de seguridad",
+      leadAnd: " y ",
+      leadHighlight2: "revisión humana obligatoria",
+      leadPart2: " antes de llegar a tu IDE.",
+      securityPolicyBtn: "Ver Política de Seguridad",
+      panelAria: "Capas de seguridad de SkillOps",
+      panelTitle: "SkillOps Security Gate",
+      panelBadge: "100% VERIFICADO ✔",
+      pillars: [
+        {
+          tag: "REVISIÓN HUMANA OBLIGATORIA",
+          path: "CODEOWNERS",
+          desc: "Nada entra al catálogo automáticamente. Cada cambio se revisa manualmente línea por línea antes de aprobarse."
+        },
+        {
+          tag: "BLOQUEO AUTOMÁTICO DE AMENAZAS",
+          path: "Python AST & CodeQL",
+          desc: "Escáneres estáticos bloquean conexiones externas ocultas, ejecución de comandos peligrosos, binarios y texto invisible."
+        },
+        {
+          tag: "EJECUCIÓN 100% LOCAL Y PROTEGIDA",
+          path: "SHA-256 Lockfile",
+          desc: "Se ejecuta directamente en tu máquina sin nube ni claves de API, protegiendo tus archivos locales con verificación SHA-256."
         }
       ]
     },

@@ -20,6 +20,16 @@ export function OpenSourceSection() {
       const clamped = Math.min(Math.max(rawProgress, 0), 1);
       const eased = 1 - Math.pow(1 - clamped, 3);
       el.style.setProperty("--oss-progress", eased.toFixed(3));
+
+      const secEl = document.getElementById("security");
+      if (secEl) {
+        const secRect = secEl.getBoundingClientRect();
+        const exitProgress = Math.min(
+          Math.max((vh - secRect.top) / (vh * 0.85), 0),
+          1
+        );
+        el.style.setProperty("--oss-exit", exitProgress.toFixed(3));
+      }
     };
 
     const onScroll = () => {
@@ -74,7 +84,7 @@ export function OpenSourceSection() {
               {t.openSource.exploreRepoBtn}
             </a>
             <a
-              href="https://github.com/OdevMatheus/SkillOps/blob/master/CONTRIBUTING.md"
+              href="https://github.com/OdevMatheus/SkillOps/blob/main/CONTRIBUTING.md"
               target="_blank"
               rel="noopener noreferrer"
               role="button"

@@ -1521,7 +1521,9 @@ samp {
 /* SECTION 4 (4th screen): 100% OPEN SOURCE */
 .oss-section {
   --oss-progress: 1;
-  position: relative;
+  --oss-exit: 0;
+  position: sticky;
+  top: 0;
   z-index: 4;
   background-color: var(--field-1);
   color: var(--field-1-ink);
@@ -1537,6 +1539,10 @@ samp {
   grid-template-columns: 5fr 7fr;
   gap: 48px;
   align-items: center;
+  transform: translate3d(0, calc(var(--oss-exit, 0) * -44px), 0)
+    scale(calc(1 - var(--oss-exit, 0) * 0.1));
+  opacity: clamp(0, calc(1 - var(--oss-exit, 0) * 1.15), 1);
+  will-change: transform, opacity;
 }
 
 .oss-section__copy {
@@ -1653,10 +1659,205 @@ samp {
   line-height: 1.5;
 }
 
+/* SECTION 5 (5th screen): 5-PILLAR SUPPLY-CHAIN SECURITY */
+.sec-section {
+  --sec-progress: 1;
+  position: relative;
+  z-index: 5;
+  background-color: var(--bg);
+  color: var(--ink);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: 88px;
+  overflow: hidden;
+}
+
+.sec-section__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.sec-section__copy {
+  transform: translate3d(0, calc((1 - var(--sec-progress, 1)) * 52px), 0);
+  opacity: clamp(0.15, var(--sec-progress, 1), 1);
+  will-change: transform, opacity;
+}
+
+.sec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background-color: var(--surface);
+  color: var(--accent);
+  font-size: var(--step-small);
+  font-weight: 600;
+  clip-path: var(--motif-clip);
+  margin-bottom: 20px;
+}
+
+.sec-section__title {
+  font-size: var(--step-head);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+
+.sec-section__lead {
+  font-size: var(--step-lead);
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 48ch;
+  margin-bottom: 32px;
+}
+
+.sec-section__lead strong {
+  color: var(--ink);
+}
+
+.sec-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sec-panel {
+  background-color: var(--surface);
+  color: var(--ink);
+  padding: 36px;
+  clip-path: var(--motif-clip-lg);
+  transform: translate3d(0, calc((1 - var(--sec-progress, 1)) * 78px), 0);
+  opacity: clamp(0.1, var(--sec-progress, 1), 1);
+  will-change: transform, opacity;
+}
+
+.sec-panel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+}
+
+.sec-panel__repo {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: var(--step-body);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.sec-panel__badge {
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  padding: 4px 12px;
+  font-size: var(--step-small);
+  font-weight: 600;
+  clip-path: var(--motif-clip);
+}
+
+.sec-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sec-pillar-card {
+  background-color: var(--bg);
+  padding: 20px 24px;
+  clip-path: var(--motif-clip);
+  transition: transform 180ms var(--ease-out-expo), background-color 180ms var(--ease-out-expo);
+}
+
+.sec-pillar-card:hover {
+  transform: translateX(4px);
+  background-color: var(--surface-2);
+}
+
+.sec-pillar-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.sec-pillar-card__tag {
+  color: var(--accent);
+  font-size: var(--step-small);
+  font-weight: 600;
+}
+
+.sec-pillar-card__path {
+  color: var(--muted);
+  font-size: var(--step-small);
+}
+
+.sec-pillar-card__desc {
+  color: var(--ink);
+  font-size: var(--step-body);
+  line-height: 1.5;
+}
+
+.sec-verify-bar {
+  margin-top: 16px;
+  background-color: var(--bg);
+  padding: 14px 20px;
+  clip-path: var(--motif-clip);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sec-verify-bar__cmd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.sec-verify-bar__label {
+  padding: 2px 10px;
+  background-color: var(--surface-2);
+  color: var(--accent);
+  font-size: var(--step-small);
+  font-weight: 600;
+}
+
+.sec-verify-bar__cmd code {
+  font-size: var(--step-small);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.sec-verify-bar__copy {
+  padding: 6px 16px;
+  border: 0;
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  font-size: var(--step-small);
+  font-weight: 600;
+  cursor: pointer;
+  clip-path: var(--motif-clip);
+  transition: transform 160ms var(--ease-out-expo);
+}
+
+.sec-verify-bar__copy:hover {
+  transform: translateY(-2px);
+}
+
 /* SECTION 6: FOOTER — The mark, built large */
 .site-footer {
   position: relative;
-  z-index: 5;
+  z-index: 6;
   background-color: var(--surface);
   color: var(--ink);
   padding-block: 64px;
@@ -2059,6 +2260,7 @@ samp {
 
   .about-section__grid,
   .oss-section__grid,
+  .sec-section__grid,
   .library-catalog__grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -2175,13 +2377,15 @@ samp {
   }
 
   .about-panel,
-  .oss-panel {
+  .oss-panel,
+  .sec-panel {
     padding: 24px 20px;
   }
 
   .about-section,
   .cli-stage-section,
   .oss-section,
+  .sec-section,
   .showcase,
   .catalog-agenda,
   .faq-section {
