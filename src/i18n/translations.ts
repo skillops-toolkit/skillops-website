@@ -122,17 +122,19 @@ export interface TranslationDictionary {
     title: string;
     sub: string;
     switchAria: string;
+    allTab: string;
     skillsTab: string;
     agentsTab: string;
+    searchPlaceholder: string;
+    clearSearch: string;
+    allTags: string;
+    emptyTitle: string;
+    resetFilters: string;
     badgeSkill: string;
     badgeAgent: string;
     copy: string;
     copied: string;
-    viewManifest: string;
-    summaries: {
-      mcpArchitect: string;
-      contextScout: string;
-    };
+    compatibleBadge: string;
   };
   transpiler: {
     headingPrefix: string;
@@ -347,20 +349,21 @@ SUBAGENT.md  -> Isolated specialist + restricted tool allowlist`
       contributeLink: "Open a Pull Request ↗",
       title: "Library.",
       sub: "Official open-source modules ready to install into any of the 28 supported AI coding agents.",
-      switchAria: "Choose Skills or Agents",
+      switchAria: "Choose module type",
+      allTab: "All",
       skillsTab: "Skills",
       agentsTab: "Agents",
+      searchPlaceholder:
+        "Search skills, agents, or #tags (e.g. backend, security, mcp)...",
+      clearSearch: "Clear",
+      allTags: "All tags",
+      emptyTitle: "No modules found matching your search or tag filter.",
+      resetFilters: "Reset filters",
       badgeSkill: "SKILL",
       badgeAgent: "AGENT",
       copy: "Copy",
       copied: "Copied ✔",
-      viewManifest: "View manifest on GitHub ↗",
-      summaries: {
-        mcpArchitect:
-          "Design, implement, and audit Model Context Protocol (MCP) servers and FastMCP tools with strict JSON-RPC stdio hygiene and typed schemas.",
-        contextScout:
-          "Read-only codebase cartographer running in an isolated context window to map entrypoints, call graphs, and exact file line ranges."
-      }
+      compatibleBadge: "28 AI IDEs · SHA-256 Verified"
     },
     transpiler: {
       headingPrefix: "Transpile ",
@@ -578,20 +581,21 @@ SUBAGENT.md  -> Especialista isolado + lista restrita de ferramentas`
       contributeLink: "Abra um Pull Request ↗",
       title: "Biblioteca.",
       sub: "Módulos open-source oficiais prontos para instalar em qualquer um dos 28 agentes de programação com IA suportados.",
-      switchAria: "Escolha Skills ou Agents",
+      switchAria: "Escolher tipo de módulo",
+      allTab: "Todos",
       skillsTab: "Skills",
       agentsTab: "Agents",
+      searchPlaceholder:
+        "Buscar skills, agents ou #tags (ex: backend, security, mcp)...",
+      clearSearch: "Limpar",
+      allTags: "Todas as tags",
+      emptyTitle: "Nenhum módulo encontrado para essa busca ou tag.",
+      resetFilters: "Limpar filtros",
       badgeSkill: "SKILL",
       badgeAgent: "AGENT",
       copy: "Copiar",
       copied: "Copiado ✔",
-      viewManifest: "Ver manifesto no GitHub ↗",
-      summaries: {
-        mcpArchitect:
-          "Projete, implemente e audite servidores Model Context Protocol (MCP) e ferramentas FastMCP com higiene estrita de stdio JSON-RPC e schemas tipados.",
-        contextScout:
-          "Cartógrafo de código somente leitura executado em uma janela de contexto isolada para mapear entrypoints, call graphs e intervalos exatos de linhas."
-      }
+      compatibleBadge: "28 IDEs de IA · Verificado SHA-256"
     },
     transpiler: {
       headingPrefix: "Transpile ",
@@ -809,20 +813,21 @@ SUBAGENT.md  -> Especialista aislado + lista restringida de herramientas`
       contributeLink: "Abre un Pull Request ↗",
       title: "Biblioteca.",
       sub: "Módulos open-source oficiales listos para instalar en cualquiera de los 28 agentes de programación con IA compatibles.",
-      switchAria: "Elige Skills o Agents",
+      switchAria: "Elegir tipo de módulo",
+      allTab: "Todos",
       skillsTab: "Skills",
       agentsTab: "Agents",
+      searchPlaceholder:
+        "Buscar skills, agents o #tags (ej: backend, security, mcp)...",
+      clearSearch: "Limpiar",
+      allTags: "Todas las etiquetas",
+      emptyTitle: "No se encontraron módulos para esta búsqueda o etiqueta.",
+      resetFilters: "Restablecer filtros",
       badgeSkill: "SKILL",
       badgeAgent: "AGENT",
       copy: "Copiar",
       copied: "Copiado ✔",
-      viewManifest: "Ver manifiesto en GitHub ↗",
-      summaries: {
-        mcpArchitect:
-          "Diseña, implementa y audita servidores Model Context Protocol (MCP) y herramientas FastMCP con estricta higiene de stdio JSON-RPC y esquemas tipados.",
-        contextScout:
-          "Cartógrafo de código de solo lectura ejecutado en una ventana de contexto aislada para mapear entrypoints, call graphs y rangos exactos de líneas."
-      }
+      compatibleBadge: "28 IDEs de IA · Verificado SHA-256"
     },
     transpiler: {
       headingPrefix: "Transpila ",
