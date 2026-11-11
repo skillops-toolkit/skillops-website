@@ -78,7 +78,7 @@ jobs:
             }
 
       - name: Checkout Repository for Deep Hygiene Audit
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Scan Tracked Files for Leaked Machine Paths & AI API Keys
         run: |
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
