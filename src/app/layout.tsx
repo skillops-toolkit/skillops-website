@@ -11,7 +11,7 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://skillops.vercel.app"),
+  metadataBase: new URL("https://skillops-website.vercel.app"),
   title: {
     default: "SkillOps · Open-Source AI Skills & Subagents Package Manager",
     template: "%s · SkillOps"
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   keywords: [
     "SkillOps",
     "skillops-cli",
+    "skillops-toolkit",
     "AI coding skills",
     "AI subagents",
     "coding agent skills",
@@ -33,20 +34,34 @@ export const metadata: Metadata = {
     "open source CLI"
   ],
   authors: [{ name: "OdevMatheus", url: "https://github.com/OdevMatheus" }],
+  icons: {
+    icon: "/brand/skillops-logo.png",
+    shortcut: "/brand/skillops-logo.png",
+    apple: "/brand/skillops-logo.png"
+  },
   openGraph: {
     title: "SkillOps · One skills library. Every coding agent.",
     description:
       "Browse a curated open-source library of AI Skills and Subagents and import them directly into your coding agent with one command.",
-    url: "https://skillops.vercel.app",
+    url: "https://skillops-website.vercel.app",
     siteName: "SkillOps",
     locale: "en_US",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/brand/skillops-logo-lockup.png",
+        width: 1600,
+        height: 600,
+        alt: "SkillOps · Open-Source AI Skills & Subagents Package Manager"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "SkillOps · One skills library. Every coding agent.",
     description:
-      "Browse and import curated AI Skills and Subagents directly into your coding agent with npx skillops-cli@latest."
+      "Browse and import curated AI Skills and Subagents directly into your coding agent with npx skillops-cli@latest.",
+    images: ["/brand/skillops-logo-lockup.png"]
   },
   alternates: {
     canonical: "/"
