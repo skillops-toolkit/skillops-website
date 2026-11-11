@@ -75,7 +75,7 @@ export function OpenSourceSection() {
 
           <div className="oss-actions">
             <a
-              href="https://github.com/OdevMatheus/SkillOps"
+              href="https://github.com/skillops-toolkit/SkillOps"
               target="_blank"
               rel="noopener noreferrer"
               role="button"
@@ -84,7 +84,7 @@ export function OpenSourceSection() {
               {t.openSource.exploreRepoBtn}
             </a>
             <a
-              href="https://github.com/OdevMatheus/SkillOps/blob/main/CONTRIBUTING.md"
+              href="https://github.com/skillops-toolkit/SkillOps/blob/main/CONTRIBUTING.md"
               target="_blank"
               rel="noopener noreferrer"
               role="button"
@@ -101,7 +101,7 @@ export function OpenSourceSection() {
           aria-label={t.openSource.panelAria}
         >
           <div className="oss-panel__head">
-            <span className="oss-panel__repo">OdevMatheus / SkillOps</span>
+            <span className="oss-panel__repo">skillops-toolkit / SkillOps</span>
             <span className="oss-panel__badge">{t.openSource.panelBadge}</span>
           </div>
 

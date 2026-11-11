@@ -39,7 +39,7 @@ export function CatalogExplorer() {
             </p>
           </div>
           <a
-            href="https://github.com/OdevMatheus/SkillOps/tree/master/catalog"
+            href="https://github.com/skillops-toolkit/SkillOps/tree/main/catalog"
             target="_blank"
             rel="noopener noreferrer"
             role="button"
@@ -130,7 +130,7 @@ export function CatalogExplorer() {
               <h3>{activeItem.previewTitle}</h3>
               <p>{activeItem.previewDesc}</p>
               <a
-                href="https://github.com/OdevMatheus/SkillOps/blob/master/CONTRIBUTING.md"
+                href="https://github.com/skillops-toolkit/SkillOps/blob/main/CONTRIBUTING.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 role="button"

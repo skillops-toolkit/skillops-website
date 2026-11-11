@@ -64,7 +64,7 @@ export function SecuritySection() {
 
           <div className="sec-actions">
             <a
-              href="https://github.com/OdevMatheus/SkillOps/blob/main/.github/SECURITY.md"
+              href="https://github.com/skillops-toolkit/SkillOps/blob/main/.github/SECURITY.md"
               target="_blank"
               rel="noopener noreferrer"
               role="button"

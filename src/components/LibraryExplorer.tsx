@@ -105,7 +105,7 @@ export function LibraryExplorer() {
           <div className="library-clean__contribute">
             <span>{t.library.contributePrompt}</span>
             <a
-              href="https://github.com/OdevMatheus/SkillOps/blob/main/CONTRIBUTING.md"
+              href="https://github.com/skillops-toolkit/SkillOps/blob/main/CONTRIBUTING.md"
               target="_blank"
               rel="noopener noreferrer"
               className="library-clean__contribute-link"

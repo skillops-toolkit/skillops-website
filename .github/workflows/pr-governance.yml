@@ -1,0 +1,120 @@
+name: PR Governance & Next.js QA Gate
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  governance-check:
+    name: Validate Branch, Semantic Title & AI Data Hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Branch Naming & Semantic PR Title
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const branch = pr.head.ref;
+            const title = pr.title;
+
+            // 1. Validate branch name: <type>/<short-kebab-description> or dependabot/*
+            const branchRegex = /^((feat|fix|docs|chore|refactor|test|style|perf|ci)\/[a-z0-9-]+|dependabot\/.+)$/;
+            if (!branchRegex.test(branch)) {
+              core.setFailed(
+                `Invalid branch name "${branch}". Branch must follow "<type>/<short-kebab-description>" ` +
+                `(e.g., "feat/library-search", "ci/governance-rules", "docs/brand-assets").`
+              );
+            }
+
+            // 2. Validate PR title follows Conventional Commits in en-US
+            const titleRegex = /^(feat|fix|docs|chore|refactor|test|style|perf|ci)(\([a-z0-9-]+\))?!?: [a-z].+$/;
+            if (!titleRegex.test(title)) {
+              core.setFailed(
+                `Invalid PR title "${title}". Title must follow Conventional Commits in lowercase imperative ` +
+                `(e.g., "feat(ui): update organization links and brand identity").`
+              );
+            }
+
+            core.info(`Branch "${branch}" and PR title "${title}" passed governance validation.`);
+
+      - name: Block Local Developer Docs (DOCS-DEV) & Sensitive Files
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pull_number = context.payload.pull_request.number;
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner,
+              repo,
+              pull_number,
+              per_page: 100,
+            });
+
+            const FORBIDDEN_PATTERNS = [
+              /^DOCS-DEV\//i,
+              /^\.env(\..+)?$/,
+            ];
+
+            const offending = files
+              .filter((f) => f.status !== 'removed')
+              .map((f) => f.filename)
+              .filter((name) => FORBIDDEN_PATTERNS.some((re) => re.test(name)));
+
+            if (offending.length > 0) {
+              core.setFailed(
+                `This PR includes local-only or sensitive files that must remain gitignored:\n  - ` +
+                offending.join('\n  - ')
+              );
+            } else {
+              core.info('OK — no DOCS-DEV/ or sensitive files detected in PR.');
+            }
+
+      - name: Checkout Repository for Deep Hygiene Audit
+        uses: actions/checkout@v4
+
+      - name: Scan Tracked Files for Leaked Machine Paths & AI API Keys
+        run: |
+          PATH_MATCHES=$(git grep -I -E '(C:\\Users\\[A-Za-z0-9][A-Za-z0-9._-]*|/Users/[A-Za-z0-9][A-Za-z0-9._-]*|/home/[A-Za-z0-9][A-Za-z0-9._-]*)' -- ':!.github/workflows/pr-governance.yml' || true)
+          if [ -n "$PATH_MATCHES" ]; then
+            echo "::error::Detected hardcoded local machine user paths in tracked files:"
+            echo "$PATH_MATCHES"
+            exit 1
+          fi
+
+          KEY_MATCHES=$(git grep -I -E '(sk-proj-[A-Za-z0-9_-]{20,}|sk-ant-[A-Za-z0-9_-]{20,}|AIzaSy[A-Za-z0-9_-]{33}|hf_[A-Za-z0-9]{30,})' -- ':!.github/workflows/pr-governance.yml' || true)
+          if [ -n "$KEY_MATCHES" ]; then
+            echo "::error::Detected potential leaked AI provider API key in tracked files:"
+            echo "$KEY_MATCHES"
+            exit 1
+          fi
+          echo "OK — Zero hardcoded local machine paths or leaked AI API keys found."
+
+  nextjs-qa:
+    name: Next.js 16 & TypeScript QA Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: TypeScript Strict Check
+        run: npx tsc --noEmit
+
+      - name: Production Build Verification
+        run: npm run build

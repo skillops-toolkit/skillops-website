@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillOps · Brand Identity &amp; Logo Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <!-- Advanced Color & Vector Graphics Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.4.2/chroma.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.2.4/dist/svg.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface-2: #242424;
+      --ink: #ffffff;
+      --muted: #a8a8a8;
+      --accent: #dafa9c;
+      --accent-2: #c5e882;
+      --accent-ink: #0f0f0f;
+      --font-sans: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      --motif-clip: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+      --motif-clip-lg: polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      padding: 56px 32px 96px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.export-mode {
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      overflow: hidden !important;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    body.export-mode .studio-frame {
+      display: none !important;
+    }
+
+    #export-mount {
+      display: none;
+    }
+
+    body.export-mode #export-mount {
+      display: block !important;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    body.export-mode #export-mount canvas {
+      width: 100vw !important;
+      height: 100vh !important;
+      box-shadow: none !important;
+      display: block;
+    }
+
+    .studio-frame {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .studio-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 48px;
+    }
+
+    .studio-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      background: var(--surface);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      clip-path: var(--motif-clip);
+      margin-bottom: 16px;
+    }
+
+    .studio-eyebrow__tab {
+      width: 12px;
+      height: 10px;
+      background: var(--accent);
+      clip-path: polygon(0 0, 72% 0, 100% 100%, 0 100%);
+    }
+
+    .studio-title {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.96;
+    }
+
+    .studio-sub {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 58ch;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    .studio-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-motif {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 26px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 700;
+      border: 0;
+      cursor: pointer;
+      clip-path: var(--motif-clip);
+      text-decoration: none;
+      transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), opacity 180ms ease;
+    }
+
+    .btn-motif:hover {
+      transform: translateY(-2px);
+      opacity: 0.94;
+    }
+
+    .btn-motif--surface {
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+
+    .studio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 28px;
+    }
+
+    .asset-card {
+      background: var(--surface);
+      padding: 28px;
+      clip-path: var(--motif-clip-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .asset-card--square {
+      grid-column: span 6;
+    }
+
+    .asset-card--wide {
+      grid-column: span 12;
+    }
+
+    @media (max-width: 960px) {
+      .asset-card--square {
+        grid-column: span 12;
+      }
+    }
+
+    .asset-card__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .asset-card__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .asset-card__tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .asset-card__title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .asset-card__stage {
+      width: 100%;
+      background:
+        linear-gradient(45deg, #141414 25%, transparent 25%),
+        linear-gradient(-45deg, #141414 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #141414 75%),
+        linear-gradient(-45deg, transparent 75%, #141414 75%);
+      background-size: 24px 24px;
+      background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+      background-color: #0b0b0b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      clip-path: var(--motif-clip);
+      overflow: hidden;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    }
+  </style>
+</head>
+<body>
+  <div id="export-mount"></div>
+
+  <div class="studio-frame">
+    <header class="studio-header">
+      <div>
+        <div class="studio-eyebrow">
+          <span class="studio-eyebrow__tab"></span>
+          <span>SKILLOPS-TOOLKIT · BRAND GRAPHICS ENGINE (CHROMA.JS + SVG.JS + CANVAS 2D)</span>
+        </div>
+        <h1 class="studio-title">SkillOps Identity Studio</h1>
+        <p class="studio-sub">
+          Identidade visual gerada algoritmicamente a partir do Design System oficial do site:
+          motivo <strong>Chamfered Folder Tab</strong> (corte 45°), monolitos arquiteturais (<code>.footer-construct</code>),
+          paleta <strong>Soot &amp; Electric Lime</strong> (<code>#0f0f0f</code> / <code>#dafa9c</code> / <code>#ffffff</code>) e tipografia <strong>Bricolage Grotesque</strong>.
+        </p>
+      </div>
+      <div class="studio-actions">
+        <button class="btn-motif" onclick="downloadAll()">Exportar Todos os PNGs</button>
+      </div>
+    </header>
+
+    <main class="studio-grid">
+      <!-- 1. GitHub Organization Avatar / Primary Logo (1024x1024) -->
+      <section class="asset-card asset-card--square">
+        <div class="asset-card__head">
+          <div class="asset-card__meta">
+            <span class="asset-card__tag">1024 × 1024 PX · GITHUB ORG &amp; APP ICON</span>
+            <h2 class="asset-card__title">Logo Principal (Dark Badge)</h2>
+          </div>
+          <button class="btn-motif btn-motif--surface" onclick="downloadCanvas('canvas-avatar', 'skillops-logo.png')">
+            Baixar PNG
+          </button>
+        </div>
+        <div class="asset-card__stage">
+          <canvas id="canvas-avatar" width="1024" height="1024"></canvas>
+        </div>
+      </section>
+
+      <!-- 2. Transparent Symbol Mark (1024x1024) -->
+      <section class="asset-card asset-card--square">
+        <div class="asset-card__head">
+          <div class="asset-card__meta">
+            <span class="asset-card__tag">1024 × 1024 PX · TRANSPARENT ALPHA</span>
+            <h2 class="asset-card__title">Símbolo Isolado (Fundo Transparente)</h2>
+          </div>
+          <button class="btn-motif btn-motif--surface" onclick="downloadCanvas('canvas-transparent', 'skillops-mark-transparent.png')">
+            Baixar PNG
+          </button>
+        </div>
+        <div class="asset-card__stage">
+          <canvas id="canvas-transparent" width="1024" height="1024"></canvas>
+        </div>
+      </section>
+
+      <!-- 3. Horizontal Lockup (1600x600) -->
+      <section class="asset-card asset-card--wide">
+        <div class="asset-card__head">
+          <div class="asset-card__meta">
+            <span class="asset-card__tag">1600 × 600 PX · BRAND LOCKUP &amp; BANNER</span>
+            <h2 class="asset-card__title">Logo Horizontal + Wordmark Arquitetural</h2>
+          </div>
+          <button class="btn-motif btn-motif--surface" onclick="downloadCanvas('canvas-lockup', 'skillops-logo-lockup.png')">
+            Baixar PNG
+          </button>
+        </div>
+        <div class="asset-card__stage">
+          <canvas id="canvas-lockup" width="1600" height="600"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const palette = {
+      bg: "#0f0f0f",
+      surface: "#1a1a1a",
+      surface2: "#242424",
+      ink: "#ffffff",
+      muted: "#a8a8a8",
+      accent: "#dafa9c",
+      accentDeep: typeof chroma !== "undefined" ? chroma.mix("#dafa9c", "#8cc63f", 0.35, "lab").hex() : "#bfe870",
+      accentBright: typeof chroma !== "undefined" ? chroma.mix("#dafa9c", "#ffffff", 0.3, "lab").hex() : "#ebffc4",
+      sootCore: typeof chroma !== "undefined" ? chroma.mix("#0f0f0f", "#dafa9c", 0.045, "lab").hex() : "#151712"
+    };
+
+    function traceChamferRect(ctx, x, y, w, h, corners = {}) {
+      const tl = corners.tl || 0;
+      const tr = corners.tr || 0;
+      const br = corners.br || 0;
+      const bl = corners.bl || 0;
+
+      ctx.beginPath();
+      ctx.moveTo(x + tl, y);
+      ctx.lineTo(x + w - tr, y);
+      if (tr > 0) ctx.lineTo(x + w, y + tr);
+      ctx.lineTo(x + w, y + h - br);
+      if (br > 0) ctx.lineTo(x + w - br, y + h);
+      ctx.lineTo(x + bl, y + h);
+      if (bl > 0) ctx.lineTo(x, y + h - bl);
+      ctx.lineTo(x, y + tl);
+      if (tl > 0) ctx.lineTo(x + tl, y);
+      ctx.closePath();
+    }
+
+    function traceFolderTab(ctx, x, y, w, h, topRatio = 0.72) {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + w * topRatio, y);
+      ctx.lineTo(x + w, y + h);
+      ctx.lineTo(x, y + h);
+      ctx.closePath();
+    }
+
+    function applyProceduralGrain(ctx, width, height, opacity = 0.026) {
+      const off = document.createElement("canvas");
+      const tile = 160;
+      off.width = tile;
+      off.height = tile;
+      const octx = off.getContext("2d");
+      const img = octx.createImageData(tile, tile);
+      const data = img.data;
+      let seed = 1337;
+      for (let i = 0; i < data.length; i += 4) {
+        seed = (seed * 1664525 + 1013904223) % 4294967296;
+        const v = (seed >>> 24) & 255;
+        data[i] = v;
+        data[i + 1] = v;
+        data[i + 2] = v;
+        data[i + 3] = Math.round(255 * opacity);
+      }
+      octx.putImageData(img, 0, 0);
+      const pat = ctx.createPattern(off, "repeat");
+      ctx.save();
+      ctx.globalCompositeOperation = "overlay";
+      ctx.fillStyle = pat;
+      ctx.fillRect(0, 0, width, height);
+      ctx.restore();
+    }
+
+    function renderArchitecturalBackdrop(ctx, width, height, chamferSize = 88) {
+      ctx.save();
+      traceChamferRect(ctx, 0, 0, width, height, {
+        tr: chamferSize,
+        bl: Math.round(chamferSize * 0.42)
+      });
+      ctx.clip();
+
+      const bgGrad = ctx.createRadialGradient(
+        width * 0.5, height * 0.36, width * 0.04,
+        width * 0.5, height * 0.5, width * 0.78
+      );
+      bgGrad.addColorStop(0, palette.sootCore);
+      bgGrad.addColorStop(0.55, "#10110f");
+      bgGrad.addColorStop(1, "#090909");
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      const glow = ctx.createRadialGradient(
+        width * 0.5, height * 0.44, 12,
+        width * 0.5, height * 0.44, width * 0.46
+      );
+      glow.addColorStop(0, "rgba(218, 250, 156, 0.16)");
+      glow.addColorStop(0.5, "rgba(218, 250, 156, 0.04)");
+      glow.addColorStop(1, "rgba(218, 250, 156, 0)");
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, width, height);
+
+      const gridStep = 64;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.032)";
+      ctx.lineWidth = 1;
+      for (let gx = gridStep; gx < width; gx += gridStep) {
+        ctx.beginPath();
+        ctx.moveTo(gx + 0.5, 0);
+        ctx.lineTo(gx + 0.5, height);
+        ctx.stroke();
+      }
+      for (let gy = gridStep; gy < height; gy += gridStep) {
+        ctx.beginPath();
+        ctx.moveTo(0, gy + 0.5);
+        ctx.lineTo(width, gy + 0.5);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = "rgba(218, 250, 156, 0.06)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(width - chamferSize * 2.3, 0);
+      ctx.lineTo(width, chamferSize * 2.3);
+      ctx.moveTo(0, height - chamferSize * 1.6);
+      ctx.lineTo(chamferSize * 1.6, height);
+      ctx.stroke();
+
+      applyProceduralGrain(ctx, width, height, 0.03);
+
+      const pad = 34;
+      traceChamferRect(ctx, pad, pad, width - pad * 2, height - pad * 2, {
+        tr: Math.max(24, chamferSize - pad * 0.65),
+        bl: Math.max(16, Math.round(chamferSize * 0.42) - pad * 0.4)
+      });
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.09)";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(width - chamferSize, 2);
+      ctx.lineTo(width - 2, chamferSize);
+      ctx.strokeStyle = palette.accent;
+      ctx.lineWidth = 5;
+      ctx.stroke();
+
+      const drawCrosshair = (cx, cy) => {
+        ctx.strokeStyle = "rgba(218, 250, 156, 0.36)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(cx - 7, cy);
+        ctx.lineTo(cx + 7, cy);
+        ctx.moveTo(cx, cy - 7);
+        ctx.lineTo(cx, cy + 7);
+        ctx.stroke();
+      };
+      drawCrosshair(66, 66);
+      drawCrosshair(width - 66, height - 66);
+
+      ctx.restore();
+    }
+
+    /**
+     * Core SkillOps Emblem (Perfected 22px Negative-Space Interlocking Grid):
+     * Three non-overlapping architectural plates inside a chamfered folder chassis,
+     * forming a razor-sharp geometric "S" + stacked manifest folders.
+     */
+    function renderSkillOpsMark(ctx, cx, cy, scale = 1) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(scale, scale);
+
+      // =========================================================================
+      // LAYER 0: Architectural Folder Chassis (#1c1f19 -> #10110f with Lime Rim)
+      // =========================================================================
+      ctx.save();
+      ctx.shadowColor = "rgba(0, 0, 0, 0.62)";
+      ctx.shadowBlur = 42;
+      ctx.shadowOffsetY = 20;
+
+      ctx.beginPath();
+      ctx.moveTo(-254, -244);
+      ctx.lineTo(-34, -244);
+      ctx.lineTo(16, -194);
+      ctx.lineTo(204, -194);
+      ctx.lineTo(254, -144);
+      ctx.lineTo(254, 244);
+      ctx.lineTo(-204, 244);
+      ctx.lineTo(-254, 194);
+      ctx.closePath();
+
+      const chassisGrad = ctx.createLinearGradient(-254, -244, 254, 244);
+      chassisGrad.addColorStop(0, "#242820");
+      chassisGrad.addColorStop(0.5, "#161814");
+      chassisGrad.addColorStop(1, "#0e0f0d");
+      ctx.fillStyle = chassisGrad;
+      ctx.fill();
+
+      ctx.lineWidth = 3.5;
+      ctx.strokeStyle = "rgba(218, 250, 156, 0.32)";
+      ctx.stroke();
+
+      // Top-right mini architectural monoliths (homage to SiteFooter.tsx)
+      ctx.shadowColor = "transparent";
+      const colWidths = 24;
+      const colGap = 10;
+      const colHeights = [64, 46, 58, 42];
+      const colColors = [
+        "rgba(218, 250, 156, 0.25)",
+        "rgba(255, 255, 255, 0.09)",
+        "rgba(255, 255, 255, 0.18)",
+        "rgba(218, 250, 156, 0.16)"
+      ];
+      for (let i = 0; i < colHeights.length; i++) {
+        const bx = 72 + i * (colWidths + colGap);
+        const bh = colHeights[i];
+        const by = -126 - bh;
+        traceChamferRect(ctx, bx, by, colWidths, bh, { tr: 7 });
+        ctx.fillStyle = colColors[i];
+        ctx.fill();
+      }
+      ctx.restore();
+
+      // =========================================================================
+      // PLATE 1 (TOP-LEFT CROWN): Electric Lime Chamfered Folder Tab & Upper "S"
+      // Spans top (-190..+190, y: -190..-62) and left vertical leg (x: -190..-88, y: -62..+38)
+      // =========================================================================
+      ctx.save();
+      ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+      ctx.shadowBlur = 24;
+      ctx.shadowOffsetY = 10;
+
+      ctx.beginPath();
+      ctx.moveTo(-190, -190);          // Top-left folder tab corner
+      ctx.lineTo(-18, -190);           // Folder tab top edge
+      ctx.lineTo(22, -150);            // 45° folder tab slope
+      ctx.lineTo(150, -150);           // Upper bar top edge
+      ctx.lineTo(190, -110);           // 45° top-right chamfer
+      ctx.lineTo(190, -62);            // Right vertical face of top bar
+      ctx.lineTo(-88, -62);            // Inner horizontal ceiling of S-top
+      ctx.lineTo(-88, 38);             // Inner right wall of upper-left leg
+      ctx.lineTo(-154, 38);            // Bottom flat of upper-left leg
+      ctx.lineTo(-190, 2);             // 45° bottom-left chamfer on upper leg
+      ctx.closePath();
+
+      const limeGradTop = ctx.createLinearGradient(-190, -190, 190, 38);
+      limeGradTop.addColorStop(0, palette.accentBright);
+      limeGradTop.addColorStop(0.5, palette.accent);
+      limeGradTop.addColorStop(1, palette.accentDeep);
+      ctx.fillStyle = limeGradTop;
+      ctx.fill();
+
+      // Signature dark chamfered tab cutout inside top-left folder ear
+      ctx.shadowColor = "transparent";
+      traceFolderTab(ctx, -160, -166, 122, 24, 0.72);
+      ctx.fillStyle = "#0f0f0f";
+      ctx.fill();
+
+      ctx.fillStyle = palette.accent;
+      ctx.fillRect(-148, -159, 16, 10);
+      ctx.restore();
+
+      // =========================================================================
+      // PLATE 2 (CENTER-RIGHT SPINE): Stark White Transpiler Bridge (#ffffff)
+      // Separated from Plate 1 by an exact 24px negative-space channel!
+      // Spans center (x: -64..+190, y: -38..+42) and right leg (x: +88..+190, y: +42..+190)
+      // =========================================================================
+      ctx.save();
+      ctx.shadowColor = "rgba(0, 0, 0, 0.55)";
+      ctx.shadowBlur = 26;
+      ctx.shadowOffsetY = 12;
+
+      ctx.beginPath();
+      ctx.moveTo(-64, -38);            // Top-left of white bridge (24px right of -88, 24px below -62)
+      ctx.lineTo(150, -38);            // Bridge top edge
+      ctx.lineTo(190, 2);              // 45° top-right chamfer of bridge
+      ctx.lineTo(190, 150);            // Right outer wall down
+      ctx.lineTo(150, 190);            // 45° bottom-right chamfer
+      ctx.lineTo(88, 190);             // Bottom flat of right leg
+      ctx.lineTo(88, 42);              // Inner left wall of right leg
+      ctx.lineTo(-36, 42);             // Bridge bottom edge
+      ctx.lineTo(-64, 14);             // 45° bottom-left chamfer of bridge
+      ctx.closePath();
+
+      const whiteGrad = ctx.createLinearGradient(-64, -38, 190, 190);
+      whiteGrad.addColorStop(0, "#ffffff");
+      whiteGrad.addColorStop(1, "#e4e8de");
+      ctx.fillStyle = whiteGrad;
+      ctx.fill();
+
+      // Precision CLI prompt ">_" engraved on the white bridge
+      ctx.shadowColor = "transparent";
+      ctx.strokeStyle = "#0f0f0f";
+      ctx.lineWidth = 10;
+      ctx.lineCap = "square";
+      ctx.lineJoin = "miter";
+      ctx.beginPath();
+      ctx.moveTo(-24, -14);
+      ctx.lineTo(-2, 2);
+      ctx.lineTo(-24, 18);
+      ctx.stroke();
+
+      ctx.fillStyle = "#0f0f0f";
+      ctx.fillRect(10, 13, 30, 9);
+      ctx.restore();
+
+      // =========================================================================
+      // PLATE 3 (BOTTOM-LEFT BASE): Electric Lime Lockfile Base (#dafa9c)
+      // Separated from Plate 2 by an exact 24px negative-space channel!
+      // Spans bottom-left lip (x: -190..-88, y: +66..+102) and base (x: -190..+64, y: +102..+190)
+      // =========================================================================
+      ctx.save();
+      ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+      ctx.shadowBlur = 24;
+      ctx.shadowOffsetY = 10;
+
+      ctx.beginPath();
+      ctx.moveTo(-190, 66);            // Upper-left lip start
+      ctx.lineTo(-88, 66);             // Lip top flat
+      ctx.lineTo(-88, 102);            // Step down to main bottom bar
+      ctx.lineTo(64, 102);             // Bottom bar top edge (24px left of +88)
+      ctx.lineTo(64, 166);             // Right edge before chamfer
+      ctx.lineTo(40, 190);             // 45° bottom-right inner chamfer
+      ctx.lineTo(-150, 190);           // Bottom flat edge
+      ctx.lineTo(-190, 150);           // 45° bottom-left outer chamfer
+      ctx.closePath();
+
+      const limeGradBot = ctx.createLinearGradient(-190, 66, 64, 190);
+      limeGradBot.addColorStop(0, palette.accent);
+      limeGradBot.addColorStop(1, palette.accentDeep);
+      ctx.fillStyle = limeGradBot;
+      ctx.fill();
+
+      // Lockfile SHA-256 verification slot on bottom plate
+      ctx.shadowColor = "transparent";
+      ctx.fillStyle = "#0f0f0f";
+      traceChamferRect(ctx, -142, 132, 114, 24, { tr: 8 });
+      ctx.fill();
+
+      ctx.fillStyle = palette.accent;
+      ctx.fillRect(-132, 139, 18, 10);
+      ctx.fillRect(-107, 139, 18, 10);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(-82, 139, 32, 10);
+      ctx.restore();
+
+      ctx.restore();
+    }
+
+    function renderAvatarLogo(targetCanvas) {
+      const canvas = targetCanvas || document.getElementById("canvas-avatar");
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      renderArchitecturalBackdrop(ctx, W, H, 96);
+      renderSkillOpsMark(ctx, W * 0.5, H * 0.45, 1.15);
+
+      // Architectural Bottom Badge Dock
+      ctx.save();
+      const pillW = 548;
+      const pillH = 76;
+      const pillX = (W - pillW) / 2;
+      const pillY = H - 142;
+
+      traceChamferRect(ctx, pillX, pillY, pillW, pillH, { tr: 20, bl: 14 });
+      ctx.fillStyle = "#151713";
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "rgba(218, 250, 156, 0.36)";
+      ctx.stroke();
+
+      traceFolderTab(ctx, pillX + 36, pillY + 26, 34, 24, 0.72);
+      ctx.fillStyle = palette.accent;
+      ctx.fill();
+
+      ctx.font = "700 41px 'Bricolage Grotesque', sans-serif";
+      ctx.fillStyle = "#ffffff";
+      ctx.textBaseline = "middle";
+      ctx.fillText("SkillOps", pillX + 86, pillY + pillH / 2 + 1);
+
+      const tagW = 188;
+      const tagH = 44;
+      const tagX = pillX + pillW - tagW - 16;
+      const tagY = pillY + (pillH - tagH) / 2;
+      traceChamferRect(ctx, tagX, tagY, tagW, tagH, { tr: 12 });
+      ctx.fillStyle = palette.accent;
+      ctx.fill();
+
+      ctx.font = "700 20px 'JetBrains Mono', monospace";
+      ctx.fillStyle = "#0f0f0f";
+      ctx.textAlign = "center";
+      ctx.fillText("TOOLKIT", tagX + tagW / 2, tagY + tagH / 2 + 1);
+      ctx.restore();
+    }
+
+    function renderTransparentMark(targetCanvas) {
+      const canvas = targetCanvas || document.getElementById("canvas-transparent");
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      renderSkillOpsMark(ctx, W * 0.5, H * 0.5, 1.48);
+    }
+
+    function renderHorizontalLockup(targetCanvas) {
+      const canvas = targetCanvas || document.getElementById("canvas-lockup");
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      renderArchitecturalBackdrop(ctx, W, H, 72);
+      renderSkillOpsMark(ctx, 310, H * 0.5, 0.78);
+
+      const startX = 610;
+      ctx.save();
+
+      traceChamferRect(ctx, startX, 116, 442, 42, { tr: 14 });
+      ctx.fillStyle = "#1b1e16";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(218, 250, 156, 0.4)";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      traceFolderTab(ctx, startX + 18, 130, 20, 15, 0.72);
+      ctx.fillStyle = palette.accent;
+      ctx.fill();
+
+      ctx.font = "600 16px 'JetBrains Mono', monospace";
+      ctx.fillStyle = palette.accent;
+      ctx.textBaseline = "middle";
+      ctx.fillText("SKILLOPS-TOOLKIT · AI PACKAGE MANAGER", startX + 50, 138);
+
+      ctx.font = "700 138px 'Bricolage Grotesque', sans-serif";
+      ctx.fillStyle = "#ffffff";
+      ctx.textBaseline = "alphabetic";
+      ctx.fillText("Skill", startX - 4, 304);
+      const skillWidth = ctx.measureText("Skill").width;
+      ctx.fillStyle = palette.accent;
+      ctx.fillText("Ops", startX - 4 + skillWidth - 6, 304);
+
+      ctx.font = "500 26px 'Bricolage Grotesque', sans-serif";
+      ctx.fillStyle = "#a8a8a8";
+      ctx.fillText("One skills library. Every coding agent.", startX, 355);
+
+      const letters = ["S", "K", "I", "L", "L", "O", "P", "S"];
+      const heights = [86, 68, 78, 62, 74, 90, 70, 82];
+      const types = ["accent", "dark", "light", "dark", "dark", "accent", "dark", "light"];
+      const blockW = 88;
+      const blockGap = 10;
+      const baseLineY = 492;
+
+      for (let i = 0; i < 8; i++) {
+        const bx = startX + i * (blockW + blockGap);
+        const bh = heights[i];
+        const by = baseLineY - bh;
+
+        traceChamferRect(ctx, bx, by, blockW, bh, { tr: 14 });
+        if (types[i] === "accent") {
+          ctx.fillStyle = palette.accent;
+        } else if (types[i] === "light") {
+          ctx.fillStyle = "#ffffff";
+        } else {
+          ctx.fillStyle = "#1a1a1a";
+        }
+        ctx.fill();
+
+        if (types[i] === "dark") {
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+
+        ctx.font = "700 30px 'Bricolage Grotesque', sans-serif";
+        ctx.fillStyle = types[i] === "dark" ? "#ffffff" : "#0f0f0f";
+        ctx.textBaseline = "bottom";
+        ctx.fillText(letters[i], bx + 14, baseLineY - 10);
+      }
+
+      ctx.restore();
+    }
+
+    function renderAll() {
+      const mode = window.__SKILLOPS_EXPORT_MODE__ || new URLSearchParams(window.location.search).get("mode");
+
+      if (mode) {
+        document.body.classList.add("export-mode");
+        const mount = document.getElementById("export-mount");
+        const c = document.createElement("canvas");
+        if (mode === "lockup") {
+          c.width = 1600;
+          c.height = 600;
+          mount.appendChild(c);
+          renderHorizontalLockup(c);
+        } else if (mode === "mark") {
+          c.width = 1024;
+          c.height = 1024;
+          mount.appendChild(c);
+          renderTransparentMark(c);
+        } else {
+          c.width = 1024;
+          c.height = 1024;
+          mount.appendChild(c);
+          renderAvatarLogo(c);
+        }
+        window.__SKILLOPS_LOGOS_READY__ = true;
+        return;
+      }
+
+      renderAvatarLogo();
+      renderTransparentMark();
+      renderHorizontalLockup();
+      window.__SKILLOPS_LOGOS_READY__ = true;
+    }
+
+    function downloadCanvas(canvasId, filename) {
+      const canvas = document.getElementById(canvasId);
+      const link = document.createElement("a");
+      link.download = filename;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+
+    function downloadAll() {
+      downloadCanvas("canvas-avatar", "skillops-logo.png");
+      setTimeout(() => downloadCanvas("canvas-transparent", "skillops-mark-transparent.png"), 250);
+      setTimeout(() => downloadCanvas("canvas-lockup", "skillops-logo-lockup.png"), 500);
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        setTimeout(renderAll, 150);
+      });
+    } else {
+      window.addEventListener("load", renderAll);
+    }
+  </script>
+</body>
+</html>

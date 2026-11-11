@@ -211,7 +211,7 @@ export function SiteHeader() {
           </div>
 
           <a
-            href="https://github.com/OdevMatheus/SkillOps"
+            href="https://github.com/skillops-toolkit/SkillOps"
             target="_blank"
             rel="noopener noreferrer"
             role="button"
