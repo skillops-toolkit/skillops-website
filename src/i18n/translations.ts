@@ -60,6 +60,8 @@ export interface TranslationDictionary {
     step2Descriptions: {
       mcpArchitect: string;
       contextScout: string;
+      envSecretsGuard: string;
+      fastapiAsyncGuard: string;
       astBlastRadius: string;
       securitySastGate: string;
     };
@@ -209,7 +211,7 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
           panelTitle: "One canonical source of truth for every coding agent.",
           panelDesc:
             "Every AI assistant demands its own folder layout and YAML frontmatter. SkillOps compiles a single Markdown manifest into the native file structure each tool expects.",
-          diagram: `catalog/skills/mcp-architect/SKILL.md
+          diagram: `catalog/ai-engineering/mcp-architect/SKILL.md
   |-- .cursor/rules/skillops-mcp-architect.mdc
   |-- .claude/skills/mcp-architect/SKILL.md
   |-- .github/instructions/skillops-mcp-architect.instructions.md
@@ -260,8 +262,10 @@ SUBAGENT.md  -> Isolated specialist + restricted tool allowlist`
       step2Descriptions: {
         mcpArchitect: "Design & validate MCP servers",
         contextScout: "Read-only codebase explorer",
-        astBlastRadius: "Call-graph impact analyzer",
-        securitySastGate: "OWASP static security gate"
+        envSecretsGuard: "Prevent credential & .env leaks",
+        fastapiAsyncGuard: "Async FastAPI & Pydantic v2 guard",
+        astBlastRadius: "Async FastAPI & Pydantic v2 guard",
+        securitySastGate: "Prevent credential & .env leaks"
       },
       step2SelectedSummary: "selected (1 Skill, 1 Agent)",
       enterToImport: "Enter to import",
@@ -290,12 +294,12 @@ SUBAGENT.md  -> Isolated specialist + restricted tool allowlist`
       tracks: [
         {
           tag: "TRACK A · FAST-TRACK CATALOG",
-          path: "catalog/skills/ & catalog/subagents/",
+          path: "catalog/<track>/*/SKILL.md & catalog/subagents/*/SUBAGENT.md",
           desc: "Open a Pull Request directly with any new SKILL.md or SUBAGENT.md. GitHub Actions validates schema and frontmatter automatically — no prior Issue required."
         },
         {
           tag: "TRACK B · CORE CLI & 28 ADAPTERS",
-          path: "src/adapters/ & src/commands/",
+          path: "src/sync/adapters.ts & src/cli.ts",
           desc: "Pure TypeScript transpiler engine and zero-dependency terminal UI. Propose new IDE targets or CLI capabilities via architectural Issues."
         },
         {
@@ -439,7 +443,7 @@ SUBAGENT.md  -> Isolated specialist + restricted tool allowlist`
             "Uma única fonte da verdade para cada agente de código.",
           panelDesc:
             "Cada assistente de IA exige sua própria estrutura de pastas e frontmatter YAML. O SkillOps compila um único manifesto Markdown na estrutura nativa de arquivos que cada ferramenta espera.",
-          diagram: `catalog/skills/mcp-architect/SKILL.md
+          diagram: `catalog/ai-engineering/mcp-architect/SKILL.md
   |-- .cursor/rules/skillops-mcp-architect.mdc
   |-- .claude/skills/mcp-architect/SKILL.md
   |-- .github/instructions/skillops-mcp-architect.instructions.md
@@ -492,8 +496,10 @@ SUBAGENT.md  -> Especialista isolado + lista restrita de ferramentas`
       step2Descriptions: {
         mcpArchitect: "Projete e valide servidores MCP",
         contextScout: "Explorador de código somente leitura",
-        astBlastRadius: "Analisador de impacto de call-graph",
-        securitySastGate: "Gate estático de segurança OWASP"
+        envSecretsGuard: "Previna vazamento de credenciais e .env",
+        fastapiAsyncGuard: "Guardião assíncrono FastAPI e Pydantic v2",
+        astBlastRadius: "Guardião assíncrono FastAPI e Pydantic v2",
+        securitySastGate: "Previna vazamento de credenciais e .env"
       },
       step2SelectedSummary: "selecionados (1 Skill, 1 Agent)",
       enterToImport: "Enter para importar",
@@ -522,12 +528,12 @@ SUBAGENT.md  -> Especialista isolado + lista restrita de ferramentas`
       tracks: [
         {
           tag: "TRILHA A · CATÁLOGO FAST-TRACK",
-          path: "catalog/skills/ & catalog/subagents/",
+          path: "catalog/<track>/*/SKILL.md & catalog/subagents/*/SUBAGENT.md",
           desc: "Abra um Pull Request diretamente com qualquer novo SKILL.md ou SUBAGENT.md. O GitHub Actions valida schema e frontmatter automaticamente — sem necessidade de Issue prévia."
         },
         {
           tag: "TRILHA B · CORE CLI E 28 ADAPTADORES",
-          path: "src/adapters/ & src/commands/",
+          path: "src/sync/adapters.ts & src/cli.ts",
           desc: "Motor transpilador em TypeScript puro e interface de terminal com zero dependências. Proponha novos alvos de IDE ou recursos de CLI via Issues arquiteturais."
         },
         {
@@ -671,7 +677,7 @@ SUBAGENT.md  -> Especialista isolado + lista restrita de ferramentas`
             "Una única fuente de verdad para cada agente de código.",
           panelDesc:
             "Cada asistente de IA exige su propia estructura de carpetas y frontmatter YAML. SkillOps compila un único manifiesto Markdown en la estructura de archivos nativa que cada herramienta espera.",
-          diagram: `catalog/skills/mcp-architect/SKILL.md
+          diagram: `catalog/ai-engineering/mcp-architect/SKILL.md
   |-- .cursor/rules/skillops-mcp-architect.mdc
   |-- .claude/skills/mcp-architect/SKILL.md
   |-- .github/instructions/skillops-mcp-architect.instructions.md
@@ -724,8 +730,10 @@ SUBAGENT.md  -> Especialista aislado + lista restringida de herramientas`
       step2Descriptions: {
         mcpArchitect: "Diseña y valida servidores MCP",
         contextScout: "Explorador de código de solo lectura",
-        astBlastRadius: "Analizador de impacto de call-graph",
-        securitySastGate: "Gate estático de seguridad OWASP"
+        envSecretsGuard: "Previene fugas de credenciales y .env",
+        fastapiAsyncGuard: "Guardián asíncrono FastAPI y Pydantic v2",
+        astBlastRadius: "Guardián asíncrono FastAPI y Pydantic v2",
+        securitySastGate: "Previene fugas de credenciales y .env"
       },
       step2SelectedSummary: "seleccionados (1 Skill, 1 Agent)",
       enterToImport: "Enter para importar",
@@ -754,12 +762,12 @@ SUBAGENT.md  -> Especialista aislado + lista restringida de herramientas`
       tracks: [
         {
           tag: "VÍA A · CATÁLOGO FAST-TRACK",
-          path: "catalog/skills/ & catalog/subagents/",
+          path: "catalog/<track>/*/SKILL.md & catalog/subagents/*/SUBAGENT.md",
           desc: "Abre un Pull Request directamente con cualquier nuevo SKILL.md o SUBAGENT.md. GitHub Actions valida el esquema y frontmatter automáticamente — sin necesidad de Issue previa."
         },
         {
           tag: "VÍA B · CORE CLI Y 28 ADAPTADORES",
-          path: "src/adapters/ & src/commands/",
+          path: "src/sync/adapters.ts & src/cli.ts",
           desc: "Motor transpilador en TypeScript puro e interfaz de terminal con cero dependencias. Propón nuevos destinos de IDE o capacidades de CLI mediante Issues arquitectónicas."
         },
         {

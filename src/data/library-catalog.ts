@@ -82,5 +82,44 @@ export const LIBRARY_CATALOG: LibraryCatalogItem[] = [
         "Cartógrafo de código somente leitura executado em uma janela de contexto isolada para mapear entrypoints, call graphs e intervalos exatos de linhas.",
       es: "Cartógrafo de código de solo lectura ejecutado en una ventana de contexto aislada para mapear entrypoints, call graphs y rangos exactos de líneas."
     }
+  },
+  {
+    slug: "fastapi-async-guard",
+    kind: "skill",
+    version: "v1.0.0",
+    track: "python-backend",
+    tags: ["backend", "python", "fastapi", "async", "pydantic"],
+    summary: {
+      en: "Audit FastAPI async route handlers for event-loop blocking I/O calls, untyped dependencies, and Pydantic v2 validation hygiene.",
+      "pt-BR":
+        "Audite rotas assíncronas do FastAPI contra chamadas síncronas bloqueantes no event loop, dependências sem tipagem e higiene de schemas Pydantic v2.",
+      es: "Audita rutas asíncronas de FastAPI contra llamadas síncronas bloqueantes en el event loop, dependencias sin tipado e higiene de esquemas Pydantic v2."
+    }
+  },
+  {
+    slug: "context-budget-profiler",
+    kind: "skill",
+    version: "v1.0.0",
+    track: "token-economy",
+    tags: ["ai", "tokens", "context-engineering", "performance", "audit"],
+    summary: {
+      en: "Profile repository Startup Token Tax across CLAUDE.md, AGENTS.md, IDE rule folders, and MCP schemas to eliminate context window bloat.",
+      "pt-BR":
+        "Analise o Startup Token Tax do repositório em CLAUDE.md, AGENTS.md, pastas de regras de IDEs e schemas MCP para eliminar desperdício de contexto.",
+      es: "Analiza el Startup Token Tax del repositorio en CLAUDE.md, AGENTS.md, carpetas de reglas de IDEs y esquemas MCP para eliminar el exceso de contexto."
+    }
+  },
+  {
+    slug: "security-diff-reviewer",
+    kind: "subagent",
+    version: "v1.0.0",
+    track: "security",
+    tags: ["security", "ai", "read-only", "code-review", "owasp"],
+    summary: {
+      en: "Read-only security specialist running in an isolated context window to audit diffs for OWASP vulnerabilities, secret leaks, and trust-boundary regressions.",
+      "pt-BR":
+        "Especialista de segurança somente leitura em janela de contexto isolada para auditar diffs contra vulnerabilidades OWASP, vazamento de segredos e regressões de fronteira.",
+      es: "Especialista de seguridad de solo lectura en ventana de contexto aislada para auditar diffs contra vulnerabilidades OWASP, fugas de secretos y regresiones de frontera."
+    }
   }
 ];
