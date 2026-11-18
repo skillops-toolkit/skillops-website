@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Check Branch Naming & Semantic PR Title
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v9
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
             const pr = context.payload.pull_request;
@@ -46,7 +46,7 @@ jobs:
 
       - name: Block Local Developer Docs (DOCS-DEV) & Sensitive Files
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v9
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
             const { owner, repo } = context.repo;
@@ -78,7 +78,7 @@ jobs:
             }
 
       - name: Checkout Repository for Deep Hygiene Audit
-        uses: actions/checkout@v7
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Scan Tracked Files for Leaked Machine Paths & AI API Keys
         run: |
@@ -102,10 +102,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Setup Node.js 22
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
           cache: npm

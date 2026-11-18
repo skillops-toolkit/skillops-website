@@ -24,7 +24,7 @@ export function TranspilerShowcase() {
 
   const modeObj = TRANSPILER_DATA[mode];
   const targetObj = modeObj.targets[ide] || modeObj.targets.cursor;
-  const commandText = `npx skillops-cli@latest add ${modeObj.slug} --agents ${ide}`;
+  const commandText = `npx skillops-cli@latest add ${modeObj.slug} --targets ${ide}`;
 
   const handleCopyCommand = async () => {
     try {

@@ -40,10 +40,10 @@ export const TRANSPILER_DATA: Record<ManifestMode, ManifestModeData> = {
   skill: {
     word: "Skills",
     slug: "mcp-architect",
-    canonicalPath: "catalog/skills/mcp-architect.md",
-    canonicalPreview: `id: mcp-architect
-kind: skill
-category: architecture
+    canonicalPath: "catalog/ai-engineering/mcp-architect/SKILL.md",
+    canonicalPreview: `name: mcp-architect
+track: ai-engineering
+version: "1.0.0"
 targets: [cursor, claude, copilot, antigravity, +24 more]`,
     targets: {
       cursor: {
@@ -112,8 +112,8 @@ description: "Design and validate production Model Context Protocol servers, too
         label: "Windsurf",
         path: ".windsurf/rules/skillops-mcp-architect.md",
         code: `---
-trigger: glob
-globs: "**/*.ts, **/*.py, **/mcp*.json"
+trigger: model_decision
+globs: ["**/*.ts", "**/*.py", "**/mcp*.json"]
 description: "Design and validate production Model Context Protocol servers, tools, and transport schemas."
 ---
 
@@ -125,7 +125,7 @@ description: "Design and validate production Model Context Protocol servers, too
       codex: {
         id: "codex",
         label: "OpenAI Codex",
-        path: ".agents/skills/mcp-architect/SKILL.md",
+        path: ".codex/skills/mcp-architect/SKILL.md",
         code: `---
 name: mcp-architect
 description: "Design and validate production Model Context Protocol servers, tools, and transport schemas."
@@ -169,11 +169,11 @@ fileMatchPattern: "**/*.ts"
   subagent: {
     word: "Subagents",
     slug: "context-scout",
-    canonicalPath: "catalog/subagents/context-scout.md",
-    canonicalPreview: `id: context-scout
-kind: subagent
-role: Read-only architectural scout
-tools: [read_file, grep_search, find_by_name]`,
+    canonicalPath: "catalog/subagents/context-scout/SUBAGENT.md",
+    canonicalPreview: `name: context-scout
+tools: [read, search]
+max_output_tokens: 400
+model_tier: fast`,
     targets: {
       cursor: {
         id: "cursor",
@@ -222,27 +222,33 @@ Operate strictly in read-only mode to map architecture and dependencies before i
       antigravity: {
         id: "antigravity",
         label: "Antigravity",
-        path: ".agent/workflows/context-scout.md",
+        path: ".agent/agents/context-scout.md",
         code: `---
+name: context-scout
 description: "Read-only codebase explorer that maps files and dependencies rapidly."
+model: inherit
+tools: ["read", "search"]
+max_output_tokens: 400
 ---
 
 # Context Scout (Antigravity Specialist)
 
-Delegate broad repository searches to this workflow to keep your primary context window clean.`
+Delegate broad repository searches to this subagent to keep your primary context window clean.`
       },
       windsurf: {
         id: "windsurf",
         label: "Windsurf",
-        path: ".windsurf/rules/skillops-agent-context-scout.md",
+        path: ".windsurf/workflows/skillops-agent-context-scout.md",
         code: `---
-trigger: manual
-description: "Subagent (context-scout): Read-only codebase explorer."
+name: context-scout
+description: "Read-only codebase explorer that maps files and dependencies rapidly."
+tools: ["read", "search"]
+max_output_tokens: 400
 ---
 
 # Context Scout (Windsurf Specialist)
 
-Invoke with @context-scout to map module dependencies and return exact file paths.`
+Invoke with /skillops-agent-context-scout to map module dependencies and return exact file paths.`
       },
       codex: {
         id: "codex",
@@ -250,13 +256,15 @@ Invoke with @context-scout to map module dependencies and return exact file path
         path: ".codex/agents/context-scout.md",
         code: `---
 name: context-scout
-sandbox_mode: read-only
 description: "Read-only codebase explorer that maps files and dependencies rapidly."
+model: inherit
+tools: ["read", "search"]
+max_output_tokens: 400
 ---
 
-# Context Scout (OpenAI Codex Agent)
+# Context Scout (OpenAI Codex Subagent)
 
-Scan the workspace under read-only sandbox permissions and report key entrypoints.`
+Scan the workspace under read-only permissions and report key entrypoints with exact file and line citations.`
       },
       gemini: {
         id: "gemini",
@@ -274,9 +282,12 @@ Perform targeted repository reconnaissance and summarize findings with clickable
       kiro: {
         id: "kiro",
         label: "Kiro",
-        path: ".kiro/steering/skillops-agent-context-scout.md",
+        path: ".kiro/agents/skillops-agent-context-scout.md",
         code: `---
-inclusion: manual
+name: context-scout
+description: "Read-only codebase explorer that maps files and dependencies rapidly."
+tools: ["read", "search"]
+max_output_tokens: 400
 ---
 
 # Context Scout (Kiro Specialist Agent)
@@ -332,12 +343,12 @@ Select one or more AI coding assistants to configure
     terminal: `  [OK] AI IDEs & Agents: 3 selected (cursor, claude, copilot)
 
 SkillOps · Select Skills & Agents to Import
-  [ Skills (10) ]  [ Agents (5) ]  (/ search)
+  [ Skills (4) ]  [ Agents (2) ]  (/ search)
 
   > [*] mcp-architect         Design and validate MCP servers
     [*] context-scout         Read-only codebase explorer agent
-    [ ] playwright-e2e        End-to-end browser test architecture
-    [ ] security-sast-gate    OWASP static audit gate
+    [ ] env-secrets-guard     Prevent credential & .env leaks
+    [ ] fastapi-async-guard   Enforce async FastAPI & Pydantic rules
 
   2 selected (1 Skill, 1 Agent) · Enter to import`,
     caption: "Persistent step completion lines keep your terminal scrollback clean and readable."
@@ -406,7 +417,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     slot: "SKILL · v1",
     title: "mcp-architect",
     subtitle: "Model Context Protocol architecture, Zod/Pydantic schemas, and transport boundaries",
-    targetPath: "catalog/skills/mcp-architect.md",
+    targetPath: "catalog/ai-engineering/mcp-architect/SKILL.md",
     previewCmd: "npx skillops-cli@latest add mcp-architect",
     previewTitle: "mcp-architect (Skill)",
     previewDesc: "Scaffolds and audits Model Context Protocol servers, tool schemas, and transport security across TypeScript and Python."
@@ -417,7 +428,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     slot: "AGENT · v1",
     title: "context-scout",
     subtitle: "Autonomous read-only codebase researcher with restricted tool permissions",
-    targetPath: "catalog/subagents/context-scout.md",
+    targetPath: "catalog/subagents/context-scout/SUBAGENT.md",
     previewCmd: "npx skillops-cli@latest add context-scout",
     previewTitle: "context-scout (Subagent)",
     previewDesc: "Read-only codebase exploration specialist that maps architecture boundaries and returns concise file citations without polluting main context."
@@ -429,7 +440,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     title: "Cursor, Windsurf, Cline & Roo",
     subtitle: "Automatic frontmatter transpilation for editor-native rule directories",
     targetPath: ".cursor/rules/ & .windsurf/rules/",
-    previewCmd: "npx skillops-cli@latest add --agents cursor,windsurf",
+    previewCmd: "npx skillops-cli@latest add --targets cursor,windsurf",
     previewTitle: "Cursor & Windsurf Adapters",
     previewDesc: "Compiles canonical Markdown into .cursor/rules/*.mdc and .windsurf/rules/*.md with glob-scoped activation frontmatter."
   },
@@ -439,10 +450,10 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     slot: "IDE · 20+",
     title: "Claude Code, Copilot, Antigravity & Codex",
     subtitle: "Dedicated skill directories and custom agent profiles with tool allowlists",
-    targetPath: ".claude/ · .github/ · .agent/",
-    previewCmd: "npx skillops-cli@latest add --agents claude,copilot,antigravity",
-    previewTitle: "Claude Code, Copilot & Antigravity",
-    previewDesc: "Separates Skills and Subagents into .claude/skills, .claude/agents, .github/instructions, and .agent/skills."
+    targetPath: ".claude/ · .github/ · .agent/ · .codex/",
+    previewCmd: "npx skillops-cli@latest add --targets claude,copilot,antigravity,codex",
+    previewTitle: "Claude Code, Copilot, Antigravity & Codex",
+    previewDesc: "Separates Skills and Subagents into .claude/skills, .claude/agents, .github/instructions, .agent/skills, and .codex/skills."
   },
   {
     id: "conflict-safe",
